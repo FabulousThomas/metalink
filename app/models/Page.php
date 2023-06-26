@@ -10,9 +10,9 @@ class Page
    }
 
    // ====GET ALL RECORDS====
-   public function getAll($table)
+   public function getAll($table, $orderby)
    {
-      $this->db->query("SELECT * FROM $table");
+      $this->db->query("SELECT * FROM $table ORDER BY $orderby DESC");
 
       return $this->db->resultSet();
    }
@@ -46,10 +46,18 @@ class Page
 
       return $this->db->resultSet();
    }
+   
+     public function selectWhereAnd($table, $col, $param, $cols, $params)
+     {
+        $this->db->query("SELECT * FROM $table WHERE $col = '$param' AND $cols = '$params'");
+  
+        return $this->db->singleSet();
+     }
+
    // SELECT ALL WITH WHERE CLAUSE
-   public function selectWhere($table, $col, $param, $cols)
+   public function selectWhere($table, $col, $param, $orderby)
    {
-      $this->db->query("SELECT * FROM $table WHERE $col = '$param' ORDER BY $cols DESC");
+      $this->db->query("SELECT * FROM $table WHERE $col = '$param' ORDER BY $orderby DESC");
 
       return $this->db->resultSet();
    }
