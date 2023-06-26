@@ -137,13 +137,15 @@
                <div class="form-group row mb-2 px-">
                   <div class="col-lg-6 mb-2 px-0 bg-transparent">
                      <small class="ps-2 text-white">Art Title</small>
-                     <input type="text" class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
+                     <input type="text"
+                        class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
                         name="nft_name" placeholder="NFT Title" required>
                   </div>
 
                   <div class="col-md-6 mb-2 px-0 bg-transparent">
                      <small class="ps-2 text-white">NFT Price(ETH)</small>
-                     <input type="text" class="form-control border-0 rounded-0 border-bottom px-2 shadow-none shadow-none bg-transparent text-white"
+                     <input type="text"
+                        class="form-control border-0 rounded-0 border-bottom px-2 shadow-none shadow-none bg-transparent text-white"
                         name="nft_price" placeholder="NFT Price" required>
                   </div>
                </div>
@@ -151,19 +153,22 @@
                <div class="form-group row mb-2 px-">
                   <div class="col-lg-6 mb-2 px-0 bg-transparent">
                      <small class="ps-2 text-white" for="nft_image">Image</small>
-                     <input type="file" class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
+                     <input type="file"
+                        class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
                         name="nft_image" placeholder="NFT Image" required>
                   </div>
                   <div class="col-md-6 mb-2 px-0 bg-transparent">
                      <small class="ps-2 text-white" for="nft_tag">Type</small>
-                     <input type="text" class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
+                     <input type="text"
+                        class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
                         name="nft_tag" placeholder="art, music, nature, memes, tech" required>
                   </div>
                </div>
 
                <div class="form-group mb-2 col-lg-12 px-0 bg-transparent">
                   <small class="ps-2 text-white" for="nft_description">Description</small>
-                  <textarea class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
+                  <textarea
+                     class="form-control border-0 rounded-0 border-bottom px-2 shadow-none bg-transparent text-white"
                      name="nft_description" rows="3" placeholder="Art/NFT Description (Optional)"></textarea>
                </div>
 
@@ -234,7 +239,7 @@
 
                <div class="mt-5">
                   <?php if (isset($_POST['paid'])): ?>
-                     <?php
+                  <?php
                      global $conn;
                      $paid_nft_id = $_POST['nft_id'];
                      $paid_user_id = $_SESSION['user_id'];
@@ -257,8 +262,8 @@
                      $conn->query("UPDATE nfts SET user_id = '$paid_user_id', user_name = '$paid_user_name', user_fname = '$paid_user_fname', user_image = '$paid_user_image', status = '$paid_status', s_status = '$paid_s_status', b_status = '$paid_b_status', buyer_id = '$paid_buyer_id' WHERE nft_id = '$paid_nft_id'");
                      ?>
 
-                     <small>Awaiting confirmation</small>
-                     <a href="<?= URLROOT ?>/explore.php" class="btn btn-sm rounded-3 py-2 mt-3" role="button">Done</a>
+                  <small>Awaiting confirmation</small>
+                  <a href="<?= URLROOT ?>/explore.php" class="btn btn-sm rounded-3 py-2 mt-3" role="button">Done</a>
                   <?php else: ?>
                   <form method="post" enctype="multipart/form-data">
                      <input type="text" name="user_id" class="form-control border-0 px-2 shadow-none">
@@ -302,17 +307,17 @@
          <div class="modal-body">
             <form method="POST">
                <?php if (isLoggedin()): ?>
-                  <?php $total = calculateBalance();
+               <?php $total = calculateBalance();
                   $row = mysqli_fetch_array($total); ?>
-                  <?php foreach ($total as $totals): ?>
+               <?php foreach ($total as $totals): ?>
                <small class="dropdown-item disabled text-white">Balance:
-                        <?php if ($row['total'] && $row['total'] != ''): ?>
-                           <?= $totals['total'] . ' ETH' ?>
-                        <?php else: ?>
+                  <?php if ($row['total'] && $row['total'] != ''): ?>
+                  <?= $totals['total'] . ' ETH' ?>
+                  <?php else: ?>
                   0.0 ETH
-                        <?php endif; ?>
+                  <?php endif; ?>
                </small>
-                  <?php endforeach; ?>
+               <?php endforeach; ?>
                <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
                   <small class="text- ps-2 text-white">Withdrawal Network</small>
                   <select class="form-select shadow-none text-white form-control border-0 px-2 bg-transparent">
@@ -343,13 +348,13 @@
                      name="proceed">Proceed</button>
 
                </div>
+               <?php endif; ?>
             </form>
          </div>
 
       </div>
    </div>
 </div>
-<?php endif; ?>
 
 <!-- DEPOSIT -->
 <div class="modal fade" id="deposit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
@@ -432,17 +437,17 @@
          <div class="modal-body">
             <form method="POST">
                <?php if (isLoggedin()): ?>
-                  <?php $total = calculateBalance();
+               <?php $total = calculateBalance();
                   $row = mysqli_fetch_array($total); ?>
                <div class="d-flex align-items-center justify-content-between px-2">
                   <small class="text-white mb-2">Your balance:
-                        <?php foreach ($total as $totals): ?>
-                           <?php if ($row['total'] && $row['total'] != ''): ?>
-                              <?= $totals['total'] . ' ETH' ?>
-                           <?php else: ?>
+                     <?php foreach ($total as $totals): ?>
+                     <?php if ($row['total'] && $row['total'] != ''): ?>
+                     <?= $totals['total'] . ' ETH' ?>
+                     <?php else: ?>
                      0.0 ETH
-                           <?php endif; ?>
-                        <?php endforeach; ?>
+                     <?php endif; ?>
+                     <?php endforeach; ?>
                   </small>
 
                   <small class="text-white mb-2">
@@ -450,35 +455,35 @@
                   </small>
                </div>
 
-                  <?php $query = selectWhere('nfts', 'nft_id', $_SESSION['nft_id'], 'nft_id');
+               <?php $query = selectWhere('nfts', 'nft_id', $_SESSION['nft_id'], 'nft_id');
                   $row = mysqli_fetch_array($query);
                   $buy_nft_name = $row['nft_name'];
                   $buy_nft_price = $row['nft_price']; ?>
 
-                  <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
-                     <small class="text- ps-2 text-white">NFT Selected</small>
-                     <input type="text" name="wallet-address"
-                        class="form-control border-0 px-2 bg-transparent text-white shadow-none py-0" aria-disabled="false"
-                        disabled value="<?= $buy_nft_name ?>" required>
-                  </div>
+               <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
+                  <small class="text- ps-2 text-white">NFT Selected</small>
+                  <input type="text" name="wallet-address"
+                     class="form-control border-0 px-2 bg-transparent text-white shadow-none py-0" aria-disabled="false"
+                     disabled value="<?= $data['singleSet']->nft_name ?>" required>
+               </div>
 
-                  <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
-                     <small class="text- ps-2 text-white">Amount (ETH)</small>
-                     <input type="text" name="deposit-amount"
-                        class="form-control border-0 px-2 bg-transparent text-white shadow-none py-0" aria-disabled="false"
-                        disabled value="<?= $buy_nft_price ?>" required>
-                  </div>
+               <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
+                  <small class="text- ps-2 text-white">Amount (ETH)</small>
+                  <input type="text" name="deposit-amount"
+                     class="form-control border-0 px-2 bg-transparent text-white shadow-none py-0" aria-disabled="false"
+                     disabled value="<?= $data['singleSet']->nft_price ?>" required>
+               </div>
 
-                  <div class="form-group mt-3 d-flex align-items-center flex-column">
-                     <button type="submit" class="btn form-control border-0 px-2 py-2 rounded-3 w-100"
-                        name="proceed">Proceed</button>
-                  </div>
-               </form>
-            </div>
+               <div class="form-group mt-3 d-flex align-items-center flex-column">
+                  <button type="submit" class="btn form-control border-0 px-2 py-2 rounded-3 w-100"
+                     name="proceed_buy_nft">Proceed</button>
+               </div>
+               <?php endif; ?>
+            </form>
          </div>
       </div>
    </div>
-<?php endif; ?>
+</div>
 <!-- END -->
 
 <!-- UPDATE NFT -->
