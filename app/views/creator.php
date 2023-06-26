@@ -58,7 +58,7 @@
                <button class="tablink" onclick="openPage('sales', this)" id="defaultOpen">On Sale</button>
                <?php if (isLoggedin() && $_SESSION['user_id'] == $data['resultsLimit']->user_id): ?>
                <button class="tablink" onclick="openPage('collection', this)">Collection</button>
-               <button class="tablink" onclick="openPage('hidden', this)">Hidden Items</button>
+               <button class="tablink" onclick="openPage('hidden', this)">Hidden</button>
                <?php endif; ?>
                <button class="tablink" onclick="openPage('about', this)">About</button>
             </div>
