@@ -38,28 +38,27 @@
                         </thead>
                         <tbody>
                            <?php
-                                        $getNeft = selectAll('nfts', 'nft_id');
                                         $i = 1; ?>
-                           <?php if (mysqli_num_rows($getNeft) > 0): ?>
-                           <?php while ($row = $getNeft->fetch_assoc()): ?>
+                           <?php if (($data['results']) > 0): ?>
+                           <?php foreach ($data['results'] as $row): ?>
                            <tr>
                               <td><?= $i++; ?></td>
-                              <td hidden><?= $row['nft_id'] ?></td>
-                              <td><a href="<?=URLROOT?>/nfts?nft_id=<?=$row['nft_id']?>" target="_blank"
-                                    class="text-light"><?= $row['nft_name'] ?></a></td>
-                              <td><img src="<?=URLROOT?>/uploads/<?=$row['nft_image']?>" class="img-floid"
-                                    alt="<?= $row['nft_name'] ?>" width="35px"></td>
-                              <td><?= $row['nft_price'] ?></td>
-                              <td><?= $row['nft_tag'] ?></td>
-                              <td><a href="<?=URLROOT?>/creator?user=<?=$row['user_id']?>" target="_blank"
-                                    class="text-light"><?= $row['user_name'] ?></a></td>
-                              <?php if($row['visibility'] == '0'): ?>
+                              <td hidden><?= $row->nft_id ?></td>
+                              <td><a href="<?=URLROOT?>/nfts?nft_id=<?=$row->nft_id?>" target="_blank"
+                                    class="text-light"><?= $row->nft_name ?></a></td>
+                              <td><img src="<?=URLROOT?>/uploads/<?=$row->nft_image?>" class="img-floid"
+                                    alt="<?= $row->nft_name ?>" width="35px"></td>
+                              <td><?= $row->nft_price ?></td>
+                              <td><?= $row->nft_tag ?></td>
+                              <td><a href="<?=URLROOT?>/creator?user=<?=$row->user_id?>" target="_blank"
+                                    class="text-light"><?= $row->user_name ?></a></td>
+                              <?php if($row->visibility == '0'): ?>
                               <td><?= 'Active' ?></td>
                               <?php else: ?>
                               <td><?= 'Hidden' ?></td>
                               <?php endif ?>
-                              <td hidden><?= $row['nft_tag'] ?></td>
-                              <td hidden><?= $row['nft_description'] ?></td>
+                              <td hidden><?= $row->nft_tag ?></td>
+                              <td hidden><?= $row->nft_description ?></td>
                               <td>
                                  <div class="dropdown open">
                                     <button class="btn btn-btn btn-light btn-sm dropdown-toggle" type="button"
@@ -74,7 +73,7 @@
                                  </div>
                               </td>
                            </tr>
-                           <?php endwhile; ?>
+                           <?php endforeach; ?>
                            <?php else: ?>
                            <tr>
                               <td>
@@ -89,59 +88,9 @@
                </div>
             </div>
          </div>
-
-         <!-- <div class="customers">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Users</h5>
-
-                    </div>
-                    <div class="card-body">
-
-                        <div class="table-responsive">
-                            <table width="100%">
-
-                                <tbody>
-                                        <?php
-                                        $geUsers = selectAll('users', 'user_id');
-                                        $row = mysqli_fetch_array($geUsers);
-                                        ?>
-                                        <?php if (mysqli_num_rows($geUsers) > 0): ?>
-                                            <?php foreach ($geUsers as $row): ?>
-                                    <tr>
-                                        <td>
-                                                        <?= $row['user_fname'] ?>
-                                        </td>
-                                        <td>
-                                            <a href="<?= URLROOT ?>/creator?user=<?= $row['user_id'] ?>" target="_blank"
-                                                            class="text-white"><?= '@' . $row['user_name'] ?></a>
-                                                    </td>
-
-                                                    <td>
-
-                                                    </td>
-
-                                                </tr>
-
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                    <tr>
-                                        <td>No transactions</td>
-                                    </tr>
-                                        <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div> -->
-
       </div>
    </main>
 </div>
-
-
 <?php else: ?>
 <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
    <div class="col-lg-5 col-md-6 col-12 bg-theme text-white mx-auto rounded-4 text-center p-5">
