@@ -4,9 +4,9 @@
          <div>
             <?php $count = getCount('user_id', 'counts', 'users') ?>
             <?php foreach ($count as $counts): ?>
-            <h3>
+               <h3>
                   <?= $counts['counts'] ?>
-               </h4>
+                  </h4>
                <?php endforeach; ?>
                <span>Users</span>
          </div>
@@ -21,9 +21,9 @@
          <div>
             <?php $count = getCount('nft_id', 'counts', 'nfts') ?>
             <?php foreach ($count as $counts): ?>
-            <h3>
+               <h3>
                   <?= $counts['counts'] ?>
-               </h4>
+                  </h4>
                <?php endforeach; ?>
                <span>NFTs</span>
          </div>
@@ -44,7 +44,7 @@
          <div>
             <div>
                <img src="<?= URLROOT; ?>/assets/images/ethereum.svg" width="30" loading="lazy" alt="ethereum icon"
-                  class="d-inline me-2">
+                  class="d-inline">
             </div>
          </div>
       </div>
@@ -58,21 +58,22 @@
             $row = mysqli_fetch_array($total);
             ?>
             <?php foreach ($total as $totals): ?>
-            <h3 class="dropdown-item">
+               <h3 class="dropdown-item">
                   <?php if ($row['total'] && $row['total'] != ''): ?>
-               <span class="">
+                     <span class="">
                         <?= $totals['total'] . ' ETH' ?>
-               </span>
+                     </span>
                   <?php else: ?>
-               0.0 ETH
+                     0.0 ETH
                   <?php endif; ?>
-            </h3>
+               </h3>
             <?php endforeach; ?>
             <span>Total</span>
          </div>
          <div>
-            <img src="<?= URLROOT; ?>/assets/images/ethereum.svg" width="30" loading="lazy" alt="ethereum icon"
-               class="d-inline me-2">
+            <!-- <img src="<?= URLROOT; ?>/assets/images/ethereum.svg" width="30" loading="lazy" alt="ethereum icon"
+               class="d-inline me-2"> -->
+            <i class="fas fa-wallet fa-xl"></i>
          </div>
       </div>
    </div>
