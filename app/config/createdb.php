@@ -3,8 +3,8 @@
 createUsers();
 createNfts();
 createSales();
+createOrders();
 // createOrderItems();
-// createOrders();
 // createAdmins();
 
 function createUsers()
@@ -87,7 +87,7 @@ function createPayments()
          PRIMARY KEY (`payment_id`)) ENGINE = InnoDB');
 }
 
-function createOrders()
+function createOrderss()
 {
    global $conn;
    $conn->query('CREATE TABLE IF NOT EXISTS `orders` (
@@ -101,4 +101,25 @@ function createOrders()
       `user_address` VARCHAR(255) NOT NULL,
       `order_date` datetime NOT NULL DEFAULT current_timestamp(),
       PRIMARY KEY (`order_id`)) ENGINE = InnoDB');
+}
+
+function createOrders()
+{
+   global $conn;
+   $conn->query("CREATE TABLE IF NOT EXISTS `orders` (
+      `id` INT NOT NULL AUTO_INCREMENT ,
+      `nft_id` INT NOT NULL ,
+      `order_id` INT NOT NULL ,
+      `user_id` INT NOT NULL ,
+      `nft_name` VARCHAR(255) NOT NULL ,
+      `nft_price` decimal(6,2) NOT NULL ,
+      `nft_tag` VARCHAR(255) NOT NULL ,
+      `nft_status` INT NOT NULL DEFAULT '1' ,
+      `status` VARCHAR(255) NOT NULL ,
+      `owner` VARCHAR(255) NOT NULL ,
+      `user_name` VARCHAR(255) NOT NULL ,
+      `user_fname` VARCHAR(255) NOT NULL ,
+      `nft_description` TEXT NOT NULL ,
+      `created_at` TIMESTAMP NOT NULL ,
+      PRIMARY KEY (`id`)) ENGINE = InnoDB");
 }
