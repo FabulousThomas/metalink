@@ -2,7 +2,7 @@
 
 class Nfts extends Controller
 {
-   public $data = [];
+   private $data = [];
    private $pageModel = '';
    public function __construct()
    {
@@ -15,17 +15,17 @@ class Nfts extends Controller
          $nft_id = htmlentities($_GET['nft_id']);
          $_SESSION['nft_id'] = $nft_id;
 
+         $singleSet = $this->pageModel->selectLimit('nfts', 'nft_id', $nft_id, '1');
          $results = $this->pageModel->selectWhere('nfts', 'nft_id', $nft_id, 'nft_id');
 
          $this->data = [
             'title' => 'NFTS',
             'nfts' => $results,
+            'singleSet' => $singleSet,
          ];
 
          $this->view('nfts', $this->data);
-
-      } else if (isset($_GET['nft_id']) && $_GET['nft_id'] != $_SESSION['nft_id']) {
-         redirect('explore');
+         
       } else {
          redirect('explore');
       }
