@@ -17,9 +17,9 @@
          </li>
             <?php else: ?>
          <li>
-            <button class="dropdown-item" name="btn-show-item" title="Show Item">
+            <button class="dropdown-item" name="btn-show-item" title="List Item">
                <h5 class="text-dark fw- mb-0">
-                  <i class="fas fa-eye fa-xs text-dark"></i> Show Item
+                  <i class="fas fa-eye fa-xs text-dark"></i> List Item
                </h5>
             </button>
          </li>
