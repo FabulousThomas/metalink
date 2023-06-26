@@ -1,5 +1,9 @@
 <?php require "inc/head.php"; ?>
 
+<?php if (isset($_GET['nft_id']) && $_GET['nft_id'] != $data['singleSet']->nft_id): ?>
+   <?php redirect('explore'); ?>
+<?php endif; ?>
+
 <style>
    small {
       font-size: 1.5rem;
@@ -20,18 +24,16 @@
          <div class="container">
 
             <?php foreach ($data['nfts'] as $row): ?>
-            <div class="card col-lg-8 col-md-12 col-12 mx-auto border-0 d-flex flex-column align-items-center p-4">
-
-                  <?php $_SESSION['nft_id'] = $row->nft_id; ?>
-
+               <?php $_SESSION['nft_id'] = $row->nft_id; ?>
+               <div class="card col-lg-8 col-md-12 col-12 mx-auto border-0 d-flex flex-column align-items-center p-4">
                   <h1 class="hero-title fw-bold">
                      <span class="span">
                         <?= $row->nft_name ?>
-                  </span>
-               </h1>
+                     </span>
+                  </h1>
 
-               <figure class="card-banner position-relative mt-5">
-                  <img src="<?= URLROOT; ?>/uploads/<?= $row->nft_image ?>" width="150" loading="lazy"
+                  <figure class="card-banner position-relative mt-5">
+                     <img src="<?= URLROOT; ?>/uploads/<?= $row->nft_image ?>" width="150" loading="lazy"
                         class="img-thumbnail rounded-5" alt="Carl Williams profile">
                   </figure>
 
@@ -49,12 +51,12 @@
 
                      <div class="col-md-6 mb-5">
                         <?php if (isLoggedin() && $_SESSION['user_id'] == $row->user_id): ?>
-                     <a href="<?= URLROOT ?>/explore" class="btn rounded-3">You own this Item</a>
+                           <a href="<?= URLROOT ?>/explore" class="btn rounded-3">You own this Item</a>
                         <?php else: ?>
                            <?php if (isLoggedin()): ?>
-                     <form method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="user_id" class="form-control shadow-none"
-                           value="<?= $nfts_user_id ?>">
+                              <form method="post" enctype="multipart/form-data">
+                                 <input type="hidden" name="user_id" class="form-control shadow-none"
+                                    value="<?= $nfts_user_id ?>">
                                  <input type="hidden" name="nft_id" class="form-control shadow-none" value="<?= $nfts_id ?>">
                                  <input type="hidden" name="user_name" class="form-control shadow-none"
                                     value="<?= $nfts_user_name ?>">
@@ -72,30 +74,30 @@
                                     Now</a>
                               </form>
                            <?php else: ?>
-                     <a type="button" data-bs-toggle="modal" data-bs-target="#login-form" class="btn rounded-2">Login To
-                        Purchase</a>
+                              <a type="button" data-bs-toggle="modal" data-bs-target="#login-form" class="btn rounded-2">Login To
+                                 Purchase</a>
                            <?php endif; ?>
                         <?php endif; ?>
+                     </div>
+
                   </div>
 
-               </div>
-
-               <div class="card-title-wrapper ms-2">
-                  <h3 class="border-bottom pt-4 pb-3">Details</h3>
-                  <p class="py-3">
+                  <div class="card-title-wrapper ms-2">
+                     <h3 class="border-bottom pt-4 pb-3">Details</h3>
+                     <p class="py-3">
                         <?= $row->nft_description ?>
-                  </p>
+                     </p>
 
-                  <li>
-                     <div class="seller-card card px-2 py-2">
+                     <li>
+                        <div class="seller-card card px-2 py-2">
 
-                        <div class="d-flex align-items-center justify-content-between">
-                           <figure class="card-banner mt-2 position-relative">
+                           <div class="d-flex align-items-center justify-content-between">
+                              <figure class="card-banner mt-2 position-relative">
                                  <?php if (isset($row->user_image)): ?>
-                              <img src="<?= URLROOT; ?>/uploads/<?= $row->user_image; ?>" width="64" height="64"
+                                    <img src="<?= URLROOT; ?>/uploads/<?= $row->user_image; ?>" width="64" height="64"
                                        loading="lazy" alt="<?= $row->user_image; ?> profile">
                                  <?php else: ?>
-                              <img src="<?= URLROOT ?>/assets/images/profile.jpg" width="64" height="64" loading="lazy"
+                                    <img src="<?= URLROOT ?>/assets/images/profile.jpg" width="64" height="64" loading="lazy"
                                        alt="<?= $row->user_image; ?> profile">
                                  <?php endif; ?>
 
@@ -106,19 +108,19 @@
                                  <h3 class="title-sm">
                                     <a href="<?= URLROOT; ?>/creator?user=<?= $row->user_id; ?>" class="link:hover">
                                        <?= $row->user_fname; ?>
-                                 </a>
-                              </h3>
+                                    </a>
+                                 </h3>
 
-                              <p class="user-name label-md text-start">
+                                 <p class="user-name label-md text-start">
                                     <?= '@' . $row->user_name; ?>
-                              </p>
+                                 </p>
+                              </div>
                            </div>
-                        </div>
 
-                     </div>
-                  </li>
+                        </div>
+                     </li>
+                  </div>
                </div>
-            </div>
 
             <?php endforeach; ?>
 
