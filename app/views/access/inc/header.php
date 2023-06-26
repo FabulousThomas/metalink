@@ -12,8 +12,8 @@
    <div class="dropdown open">
       <a class="" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          <div class="user-wrapper">
-            <?php if (isset($data['user_image']) && $data['user_image'] != ""): ?>
-            <img src="<?= URLROOT; ?>/uploads/<?= $data['user_image'] ?>" width="40px" height="40px" alt="Admin">
+            <?php if (isset($data['singleResult']->user_image) && $data['singleResult']->user_image != ""): ?>
+            <img src="<?= URLROOT; ?>/uploads/<?= $data['singleResult']->user_image ?>" width="40px" height="40px" alt="Admin">
             <?php else: ?>
             <img src="<?= URLROOT; ?>/assets/images/profile.jpg" width="40px" height="40px" alt="Admin">
             <?php endif; ?>
@@ -22,7 +22,7 @@
       </a>
       <div class="dropdown-menu" aria-labelledby="triggerId">
          <p class="dropdown-item disabled text-dark border-bottom mb-0">
-            <?= $data['user_fname'] ?>
+            <?= $data['singleResult']->user_fname ?>
          </p>
          <small type="button" class="dropdown-item text-dark py-1" data-bs-toggle="modal"
             data-bs-target="#list-nft">List NFT</small>
