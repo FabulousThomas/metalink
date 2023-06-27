@@ -27,10 +27,15 @@
                         <thead>
                            <tr>
                               <td>#</td>
+                              <td>Nft Id</td>
+                              <td>Trx Id</td>
+                              <td>User Id</td>
                               <td>NFTs</td>
                               <td>Image</td>
-                              <td>price</td>
+                              <td>Price</td>
                               <td>Owner</td>
+                              <td>Role</td>
+                              <td>Approval</td>
                               <td>Status</td>
                               <td></td>
                            </tr>
@@ -42,7 +47,10 @@
                            <?php foreach ($data['results'] as $row): ?>
                            <tr>
                               <td><?= $i++; ?></td>
-                              <td hidden><?= $row->nft_id ?></td>
+                              <td hidden><?= $row->id ?></td>
+                              <td><?= $row->nft_id ?></td>
+                              <td><?= $row->order_id ?></td>
+                              <td><?= $row->user_id ?></td>
                               <td><a href="<?=URLROOT?>/nfts?nft_id=<?=$row->nft_id?>" target="_blank"
                                     class="text-light"><?= $row->nft_name ?></a></td>
                               <td><img src="<?=URLROOT?>/uploads/<?=$row->nft_image?>" class="img-floid"
@@ -50,14 +58,17 @@
                               <td><?= $row->nft_price ?></td>
                               <td><a href="<?=URLROOT?>/creator?user=<?=$row->user_id?>" target="_blank"
                                     class="text-light"><?= $row->user_name ?></a></td>
-                              <?php if($row->visibility == '0'): ?>
+                              <td><?= $row->role ?></td>
+                              <?php if($row->nft_status == '0'): ?>
                               <td><?= 'Approved' ?></td>
-                              <?php elseif($row->visibility == '1'): ?>
+                              <?php elseif($row->nft_status == '1'): ?>
                               <td><?= 'Pending' ?></td>
                               <?php else: ?>
                               <td><?= 'Cancelled' ?></td>
                               <?php endif ?>
+                              <td><?= $row->status ?></td>
                               <td hidden><?= $row->nft_description ?></td>
+                              <?php if(isset($row->role) && $row->role == 'buyer'): ?>
                               <td>
                                  <div class="dropdown open">
                                     <button class="btn btn-btn btn-light btn-sm dropdown-toggle" type="button"
@@ -67,14 +78,14 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="triggerId">
                                        <form method="POST">
-                                          <button type="submit" class="dropdown-item btn btn-btn btn-sm text-success"
-                                             name="approve_nft_sales">Approve</button>
+                                          <button type="button" class="dropdown-item btn btn-btn btn-sm text-success approve_nft_sales">Approve</button>
                                           <button type="submit" class="dropdown-item btn btn-btn btn-sm text-danger"
                                              name="cancel_nft_sales">Cancel</button>
                                        </form>
                                     </div>
                                  </div>
                               </td>
+                              <?php endif; ?>
                            </tr>
                            <?php endforeach; ?>
                            <?php else: ?>
@@ -125,8 +136,8 @@ function myFunction() {
 }
 
 $(document).ready(function() {
-   $('.edit-nft').on('click', function() {
-      $('#update-nft').modal('show');
+   $('.approve_nft_sales').on('click', function() {
+      $('#approve_nft_sales').modal('show');
 
       $tr = $(this).closest("tr");
       var data = $tr.children("td").map(function() {
@@ -134,11 +145,7 @@ $(document).ready(function() {
       }).get();
 
       // console.log(data);
-      $('#nft_id').val(data[1]);
-      $('#nft_name').val(data[2]);
-      $('#nft_price').val(data[3]);
-      $('#nft_tag').val(data[4]);
-      $('#nft_description').val(data[5]);
+      $('#approve_nft_id').val(data[1]);
 
    });
 
