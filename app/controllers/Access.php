@@ -37,7 +37,7 @@ class Access extends Controller
          $u_id = $_SESSION['user_id'];
 
          $singleResult = $this->pageModel->selectWhereAnd('users', 'user_id', $u_id, 'user_access', '1');
-         $result = $this->pageModel->getAll('nfts', 'nft_id');
+         $result = $this->pageModel->getAll('orders', 'id');
 
          $this->data = [
             'results' => $result,
