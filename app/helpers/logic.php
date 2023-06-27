@@ -255,7 +255,6 @@ if (isset($_POST['btn-delete-nft'])) {
    }
 }
 
-
 if (isset($_POST['btn-hide-item'])) {
 
    $nft_id = $_POST['nft_id'];
@@ -268,4 +267,61 @@ if (isset($_POST['btn-hide-item'])) {
 
    $conn->query("UPDATE nfts SET visibility = '0' WHERE nft_id = '$nft_id'");
 
+}
+
+// PROCEED TO BUY NFT
+if (isset($_POST['proceed_buy_nft'])) {
+   // SELECT FROM NFTS TABLE
+   $nft_id = $_POST['nft_id'];
+   $query = $conn->query("SELECT * FROM nfts WHERE nft_id = '$nft_id'");
+   $row = mysqli_fetch_array($query);
+
+   // DECLARE VARIABLES
+   $order_id = 'TRX' . random_num(9);
+   $owner_id = $row['user_id'];
+   $user_id = $_SESSION['user_id'];
+   $nft_name = $row['nft_name'];
+   $nft_price = $row['nft_price'];
+   $nft_tag = $row['nft_tag'];
+   $nft_image = $row['nft_image'];
+   $status = 'not paid';
+   $owner = $row['user_name'];
+   $buyer = 'buyer';
+   $seller = 'seller';
+   $user_name = $row['user_name'];
+   $user_fname = $row['user_fname'];
+   $user_image = $row['user_image'];
+   $nft_description = $row['nft_description'];
+
+   // FOR THE BUYER
+   $conn->query("INSERT INTO orders( nft_id, order_id, user_id, nft_name, nft_price, nft_tag, nft_image, status, owner, role, user_name, user_fname, user_image, nft_description) VALUES('$nft_id', '$order_id', '$user_id', '$nft_name', '$nft_price', '$nft_tag', '$nft_image', '$status', '$owner', '$buyer', '$user_name', '$user_fname', '$user_image', '$nft_description')");
+
+   // FOR THE SELLER
+   $conn->query("INSERT INTO orders( nft_id, order_id, user_id, nft_name, nft_price, nft_tag, nft_image, status, owner, role, user_name, user_fname, user_image, nft_description) VALUES('$nft_id', '$order_id', '$owner_id', '$nft_name', '$nft_price', '$nft_tag', '$nft_image', '$status', '$owner', '$seller', '$user_name', '$user_fname', '$user_image', '$nft_description')");
+
+   flashmsg('success', '<strong class="text-success">Congratulations! </strong>Your purchase request is successful');
+}
+
+// APPROVE NFT SALES 
+if (isset($_POST['approve_nft_sales'])) {
+   $nft_id = $_POST['approve_nft_id'];
+   $query = $conn->query("SELECT * FROM nfts WHERE nft_id = '$nft_id'");
+   $row = mysqli_fetch_array($query);
+
+   // DECLARE VARIABLES
+   $order_id = 'TRX' . random_num(9);
+   $owner_id = $row['user_id'];
+   $user_id = $_SESSION['user_id'];
+   $nft_name = $row['nft_name'];
+   $nft_price = $row['nft_price'];
+   $nft_tag = $row['nft_tag'];
+   $nft_image = $row['nft_image'];
+   $status = 'not paid';
+   $owner = $row['user_name'];
+   $buyer = 'buyer';
+   $seller = 'seller';
+   $user_name = $row['user_name'];
+   $user_fname = $row['user_fname'];
+   $user_image = $row['user_image'];
+   $nft_description = $row['nft_description'];
 }
