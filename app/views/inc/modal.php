@@ -215,7 +215,7 @@
 <!-- END -->
 
 <!-- WITHDRAW -->
-<div class="modal fade" id="withdraws" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="modal fade" id="make-payment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content bg-theme">
          <div class="modal-header border-0">
@@ -227,10 +227,8 @@
 
 
             <div class="text-white text-center col-12 mb-5">
-               <h3 class="text-center">Confirm Withdrawal</h3>
-
+               <h3 class="text-center">Confirm Payment</h3>
                <p>Make payment to the ETH wallet below</p>
-
                <div class="input-group mb-3">
                   <input type="text" class="form-control border-0 px-2 shadow-none"
                      value="0x18339B0FA6400CEA626ca4462be3150D8B207e90" id="wallet">
@@ -238,48 +236,45 @@
                </div>
 
                <div class="mt-5">
-                  <?php if (isset($_POST['paid'])): ?>
-                  <?php
-                     global $conn;
-                     $paid_nft_id = $_POST['nft_id'];
-                     $paid_user_id = $_SESSION['user_id'];
-                     $paid_buyer_id = $_POST['user_id'];
-                     $paid_user_name = $_SESSION['user_name'];
-                     $paid_user_fname = $_SESSION['user_fname'];
-                     $paid_user_image = $_SESSION['user_image'];
-                     $paid_nft_image = $_POST['nft_image'];
-                     $paid_nft_price = $_POST['nft_price'];
-                     $paid_nft_name = $_POST['nft_name'];
-                     $paid_status = 'pending';
-                     $paid_s_status = $_SESSION['user_id'] ? 'bought' : '';
-                     $paid_b_status = $paid_buyer_id ? 'sold' : '';
-                     $paid_trnx_id = $_POST['trnx_id'];
-                     $paid_nft_description = $_POST['nft_description'];
+                  <?php if (isset($_POST['proceed_buy_nft'])): ?>
+                  <!-- <?php
+                     // global $conn;
+                     // $paid_nft_id = $_POST['nft_id'];
+                     // $paid_user_id = $_SESSION['user_id'];
+                     // $paid_buyer_id = $_POST['user_id'];
+                     // $paid_user_name = $_SESSION['user_name'];
+                     // $paid_user_fname = $_SESSION['user_fname'];
+                     // $paid_user_image = $_SESSION['user_image'];
+                     // $paid_nft_image = $_POST['nft_image'];
+                     // $paid_nft_price = $_POST['nft_price'];
+                     // $paid_nft_name = $_POST['nft_name'];
+                     // $paid_status = 'pending';
+                     // $paid_s_status = $_SESSION['user_id'] ? 'bought' : '';
+                     // $paid_b_status = $paid_buyer_id ? 'sold' : '';
+                     // $paid_trnx_id = $_POST['trnx_id'];
+                     // $paid_nft_description = $_POST['nft_description'];
 
                      // $conn->query("INSERT INTO sales (nft_id, user_id, seller_id, user_name, user_fname, user_image, nft_image, nft_price, nft_name, status, s_status, b_status, trnx_id, nft_description) VALUES ('$paid_nft_id', '$paid_user_id', '$paid_seller_id', '$paid_user_name', '$paid_user_fname', '$paid_user_image', '$paid_nft_image', '$paid_nft_price', '$paid_nft_name', '$paid_status', '$paid_s_status', '$paid_b_status', '$paid_trnx_id', '$paid_nft_description')");
                      // 
                   
-                     $conn->query("UPDATE nfts SET user_id = '$paid_user_id', user_name = '$paid_user_name', user_fname = '$paid_user_fname', user_image = '$paid_user_image', status = '$paid_status', s_status = '$paid_s_status', b_status = '$paid_b_status', buyer_id = '$paid_buyer_id' WHERE nft_id = '$paid_nft_id'");
-                     ?>
+                     // $conn->query("UPDATE nfts SET user_id = '$paid_user_id', user_name = '$paid_user_name', user_fname = '$paid_user_fname', user_image = '$paid_user_image', status = '$paid_status', s_status = '$paid_s_status', b_status = '$paid_b_status', buyer_id = '$paid_buyer_id' WHERE nft_id = '$paid_nft_id'");
+                     ?> -->
 
                   <small>Awaiting confirmation</small>
-                  <a href="<?= URLROOT ?>/explore.php" class="btn btn-sm rounded-3 py-2 mt-3" role="button">Done</a>
+                  <a href="<?= URLROOT ?>/explore" class="btn btn-sm rounded-3 py-2 mt-3" role="button">Done</a>
                   <?php else: ?>
                   <form method="post" enctype="multipart/form-data">
-                     <input type="text" name="user_id" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="nft_id" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="user_name" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="user_fname" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="user_image" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="nft_image" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="nft_price" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="nft_name" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="trnx_id" class="form-control border-0 px-2 shadow-none">
-                     <input type="text" name="nft_description" class="form-control border-0 px-2 shadow-none">
-                     <small>Click 'paid' when payment is made for confirmation</small>
+                     <input type="hidden" name="nft_id" value="<?= $data['singleSet']->nft_id ?>">
+                     <div class="form-group mb-0 text-center">
+                        <label class="">
+                           <input type="checkbox" name="Paid" class="shadow-none d-inline" style="width: 20px;">
+                           I confirm this payment is made
+                        </label>
+                     </div>
 
-                     <div class="form-group text-center w-100">
-                        <input name="paid" class="btn rounded-3 py-2 mt-3 text-center" value="Paid">
+                     <div class="form-group mt-3 d-flex align-items-center flex-column">
+                        <button name="proceed_buy_nft"
+                           class="btn form-control border-0 px-2 py-2 rounded-3 w-100">Paid</button>
                      </div>
                   </form>
                   <?php endif; ?>
@@ -455,28 +450,25 @@
                   </small>
                </div>
 
-               <?php $query = selectWhere('nfts', 'nft_id', $_SESSION['nft_id'], 'nft_id');
-                  $row = mysqli_fetch_array($query);
-                  $buy_nft_name = $row['nft_name'];
-                  $buy_nft_price = $row['nft_price']; ?>
-
                <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
+                  <input type="hidden" name="nft_id" class="form-control bg-transparent text-white"
+                     value="<?= $data['singleSet']->nft_id ?>">
                   <small class="text- ps-2 text-white">NFT Selected</small>
-                  <input type="text" name="wallet-address"
+                  <input type="text" name="nft_name"
                      class="form-control border-0 px-2 bg-transparent text-white shadow-none py-0" aria-disabled="false"
                      disabled value="<?= $data['singleSet']->nft_name ?>" required>
                </div>
 
                <div class="form-group mb-3 border rounded-3 px-3 bg-transparent">
                   <small class="text- ps-2 text-white">Amount (ETH)</small>
-                  <input type="text" name="deposit-amount"
+                  <input type="text" name="nft_price"
                      class="form-control border-0 px-2 bg-transparent text-white shadow-none py-0" aria-disabled="false"
                      disabled value="<?= $data['singleSet']->nft_price ?>" required>
                </div>
 
                <div class="form-group mt-3 d-flex align-items-center flex-column">
-                  <button type="submit" class="btn form-control border-0 px-2 py-2 rounded-3 w-100"
-                     name="proceed_buy_nft">Proceed</button>
+                  <button type="button" class="btn form-control border-0 px-2 py-2 rounded-3 w-100"
+                     data-bs-toggle="modal" data-bs-target="#make-payment">Proceed</button>
                </div>
                <?php endif; ?>
             </form>
@@ -577,7 +569,7 @@
    </div>
 </div>
 
-<!-- -->
+<!-- CONFIRM DELETE ITEM -->
 <div class="modal fade" id="delete-nft" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content bg-theme">
@@ -599,6 +591,37 @@
 
                <div class="form-group mt-3 d-flex align-items-center justify-content-evenly">
                   <input type="submit" class="btn btn-sm rounded-3 py-2" name="btn-delete-nf" value="Delete">
+                  <input type="button" class="btn btn-sm rounded-3 py-2" data-bs-dismiss="modal" value="Cancel">
+               </div>
+            </form>
+         </div>
+
+      </div>
+   </div>
+</div>
+
+<!-- CONFIRM NFT SALES -->
+<div class="modal fade" id="approve_nft_sales" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+   <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content bg-theme">
+         <div class="modal-header border-0">
+            <?= SITELOGO_LG; ?>
+            <a type="button" class="text-white" data-bs-dismiss="modal" aria-label="Close">
+               <i class="fas fa-times"></i></a>
+         </div>
+         <h3 class="text-center text-white text-uppercase pt-4 mb-0">Confirmation</h3>
+         <div class="modal-body">
+            <form action="index" method="POST" enctype="multipart/form-data">
+               <div class="form-group mb-2 text-center">
+                  <p class="text-white mb-0">Are you sure to approve this transaction?</p>
+                  <p class="text-danger mb-0">Note: This action will transfer ownership to the buyer.</p>
+
+                  <input type="hidden" name="approve_nft_id" id="approve_nft_id"
+                     class="form-control text-white bg-transparent shadow-none" value="">
+
+               </div>
+               <div class="form-group mt-3 d-flex align-items-center justify-content-evenly">
+                  <input type="submit" class="btn btn-sm rounded-3 py-2" name="approve_nft_sales" value="Approve">
                   <input type="button" class="btn btn-sm rounded-3 py-2" data-bs-dismiss="modal" value="Cancel">
                </div>
             </form>
