@@ -9,8 +9,8 @@
     <!-- CUSTOME CSS -->
     <link rel="stylesheet" href="<?= URLROOT; ?>/assets/css/style-2.css" />
     <!-- SCRIPTS -->
-    <script src="<?= URLROOT; ?>/assets/js/jquery-3.6.1.min.js"></script>
-    <script src="<?= URLROOT; ?>/assets/js/bootstrap-5.2.3.bundle.min.js"></script>
+    <?php include APPROOT . "/views/inc/js-links.php"; ?>
+
     <title>Metalink | Admin</title>
 </head>
 
