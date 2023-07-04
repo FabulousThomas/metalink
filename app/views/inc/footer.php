@@ -190,17 +190,7 @@
 
 <div class="body-bg-shape"></div>
 
-
-<script src="<?= URLROOT; ?>/assets/js/jquery-3.6.1.min.js"></script>
-<script src="<?= URLROOT; ?>/assets/js/bootstrap-5.2.3.bundle.min.js"></script>
-
-<!-- custom js link -->
-<script src="<?= URLROOT; ?>/assets/js/script.js"></script>
-<script src="<?= URLROOT ?>/assets/js/tab.js"></script>
-
-<!-- ionicon link -->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<?php include APPROOT . "/views/inc/js-links.php"; ?>
 
 </body>
 
