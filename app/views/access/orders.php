@@ -47,7 +47,7 @@
                            <?php foreach ($data['results'] as $row): ?>
                            <tr>
                               <td><?= $i++; ?></td>
-                              <td hidden><?= $row->id ?></td>
+                              <!-- <td hidden><?= $row->id ?></td> -->
                               <td><?= $row->nft_id ?></td>
                               <td><?= $row->order_id ?></td>
                               <td><?= $row->user_id ?></td>
@@ -67,7 +67,7 @@
                               <td><?= 'Cancelled' ?></td>
                               <?php endif ?>
                               <td><?= $row->status ?></td>
-                              <td hidden><?= $row->nft_description ?></td>
+                              <!-- <td hidden><?= $row->nft_description ?></td> -->
                               <?php if(isset($row->role) && $row->role == 'buyer'): ?>
                               <td>
                                  <div class="dropdown open">
@@ -78,7 +78,8 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="triggerId">
                                        <form method="POST">
-                                          <button type="button" class="dropdown-item btn btn-btn btn-sm text-success approve_nft_sales">Approve</button>
+                                          <button type="button"
+                                             class="dropdown-item btn btn-btn btn-sm text-success approve_nft_sales">Approve</button>
                                           <button type="submit" class="dropdown-item btn btn-btn btn-sm text-danger"
                                              name="cancel_nft_sales">Cancel</button>
                                        </form>
