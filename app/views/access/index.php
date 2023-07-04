@@ -43,7 +43,7 @@
                            <?php foreach ($data['results'] as $row): ?>
                            <tr>
                               <td><?= $i++; ?></td>
-                              <td hidden><?= $row->nft_id ?></td>
+                              <!-- <td hidden><?= $row->nft_id ?></td> -->
                               <td><a href="<?=URLROOT?>/nfts?nft_id=<?=$row->nft_id?>" target="_blank"
                                     class="text-light"><?= $row->nft_name ?></a></td>
                               <td><img src="<?=URLROOT?>/uploads/<?=$row->nft_image?>" class="img-floid"
@@ -57,8 +57,8 @@
                               <?php else: ?>
                               <td><?= 'Hidden' ?></td>
                               <?php endif ?>
-                              <td hidden><?= $row->nft_tag ?></td>
-                              <td hidden><?= $row->nft_description ?></td>
+                              <!-- <td hidden><?= $row->nft_tag ?></td> -->
+                              <!-- <td hidden><?= $row->nft_description ?></td> -->
                               <td>
                                  <div class="dropdown open">
                                     <button class="btn btn-btn btn-light btn-sm dropdown-toggle" type="button"
