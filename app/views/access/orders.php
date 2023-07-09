@@ -43,7 +43,7 @@
                         <tbody>
                            <?php
                                         $i = 1; ?>
-                           <?php if (($data['results']) > 0): ?>
+                           <?php if (!empty($data['results'])): ?>
                            <?php foreach ($data['results'] as $row): ?>
                            <tr>
                               <td><?= $i++; ?></td>
