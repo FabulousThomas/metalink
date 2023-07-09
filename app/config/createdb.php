@@ -41,28 +41,28 @@ function createNfts()
          PRIMARY KEY (`nft_id`)) ENGINE = InnoDB');
 }
 
-function createSales()
-{
-   global $conn;
-   $conn->query('CREATE TABLE IF NOT EXISTS `sales` (
-         `id` INT NOT NULL AUTO_INCREMENT,
-         `nft_id` INT NOT NULL,
-         `user_id` INT NOT NULL,
-         `seller_id` INT NOT NULL,
-         `user_name` VARCHAR(255) NOT NULL,
-         `user_fname` VARCHAR(255) NOT NULL,
-         `user_image` VARCHAR(255) NOT NULL,
-         `nft_image` VARCHAR(255) NOT NULL,
-         `nft_price` decimal(6,2) NOT NULL,
-         `nft_name` VARCHAR(255) NOT NULL,
-         `status` VARCHAR(255) NOT NULL,
-         `s_status` VARCHAR(255) NOT NULL,
-         `b_status` VARCHAR(255) NOT NULL,
-         `trnx_id` VARCHAR(255) NOT NULL,
-         `nft_description` TEXT NOT NULL,
-         `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-         PRIMARY KEY (`id`)) ENGINE = InnoDB');
-}
+// function createSales()
+// {
+//    global $conn;
+//    $conn->query('CREATE TABLE IF NOT EXISTS `sales` (
+//          `id` INT NOT NULL AUTO_INCREMENT,
+//          `nft_id` INT NOT NULL,
+//          `user_id` INT NOT NULL,
+//          `seller_id` INT NOT NULL,
+//          `user_name` VARCHAR(255) NOT NULL,
+//          `user_fname` VARCHAR(255) NOT NULL,
+//          `user_image` VARCHAR(255) NOT NULL,
+//          `nft_image` VARCHAR(255) NOT NULL,
+//          `nft_price` decimal(6,2) NOT NULL,
+//          `nft_name` VARCHAR(255) NOT NULL,
+//          `status` VARCHAR(255) NOT NULL,
+//          `s_status` VARCHAR(255) NOT NULL,
+//          `b_status` VARCHAR(255) NOT NULL,
+//          `trnx_id` VARCHAR(255) NOT NULL,
+//          `nft_description` TEXT NOT NULL,
+//          `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+//          PRIMARY KEY (`id`)) ENGINE = InnoDB');
+// }
 
 function createAdmins()
 {
@@ -110,6 +110,30 @@ function createOrders()
       `id` INT NOT NULL AUTO_INCREMENT ,
       `nft_id` INT NOT NULL ,
       `order_id` VARCHAR(255) NOT NULL ,
+      `user_id` INT NOT NULL ,
+      `nft_name` VARCHAR(255) NOT NULL ,
+      `nft_price` decimal(6,2) NOT NULL ,
+      `nft_tag` VARCHAR(255) NOT NULL ,
+      `nft_image` VARCHAR(255) NOT NULL ,
+      `nft_status` INT NOT NULL DEFAULT '1' ,
+      `status` VARCHAR(255) NOT NULL ,
+      `owner` VARCHAR(255) NOT NULL ,
+      `role` VARCHAR(255) NOT NULL ,
+      `user_name` VARCHAR(255) NOT NULL ,
+      `user_fname` VARCHAR(255) NOT NULL ,
+      `user_image` VARCHAR(255) NOT NULL ,
+      `nft_description` TEXT NOT NULL ,
+      `created_at` TIMESTAMP NOT NULL ,
+      PRIMARY KEY (`id`)) ENGINE = InnoDB");
+}
+
+function createSales()
+{
+   global $conn;
+   $conn->query("CREATE TABLE IF NOT EXISTS `sales` (
+      `id` INT NOT NULL AUTO_INCREMENT ,
+      `nft_id` INT NOT NULL ,
+      `sale_id` VARCHAR(255) NOT NULL ,
       `user_id` INT NOT NULL ,
       `nft_name` VARCHAR(255) NOT NULL ,
       `nft_price` decimal(6,2) NOT NULL ,
