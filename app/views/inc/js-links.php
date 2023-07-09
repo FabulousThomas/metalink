@@ -16,7 +16,7 @@
 <script src="https://cdn.datatables.net/scroller/2.1.1/js/dataTables.scroller.min.js"></script>
 <script src="https://cdn.datatables.net/searchpanes/2.1.2/js/dataTables.searchPanes.min.js"></script>
 
-<script>
+<!-- <script>
    $(document).ready(function() {
       $('table').DataTable({
          searching:true,
@@ -24,4 +24,4 @@
          paging:true,
       });
    });
-</script>
+</script> -->
