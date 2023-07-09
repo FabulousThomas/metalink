@@ -9,6 +9,31 @@ class Page
       $this->db = new Database;
    }
 
+   public function getAllNfts()
+   {
+      $this->db->query('SELECT *,
+                        orders.id as orderId,
+                        sales.id as saleId,
+                        orders.created_at as orderCreated,
+                        sales.created_at as saleCreated
+                        FROM sales
+                        INNER JOIN orders
+                        ON orders.id = sales.id
+                        ORDER BY orders.created_at DESC
+                        ');
+      return $this->db->resultSet();
+      // return $result;
+   }
+
+      // Get NFTs by ID
+      public function getCreatorId($nft_id)
+      {
+         $this->db->query('SELECT * FROM nfts WHERE nft_id = :nft_id');
+         $this->db->bind(':nft_id', $nft_id);
+   
+         return $this->db->singleSet();
+      }
+
    // ====GET ALL RECORDS====
    public function getAll($table, $orderby)
    {
