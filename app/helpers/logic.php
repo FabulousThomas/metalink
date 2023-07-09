@@ -297,7 +297,7 @@ if (isset($_POST['proceed_buy_nft'])) {
    $conn->query("INSERT INTO orders( nft_id, order_id, user_id, nft_name, nft_price, nft_tag, nft_image, status, owner, role, user_name, user_fname, user_image, nft_description) VALUES('$nft_id', '$order_id', '$user_id', '$nft_name', '$nft_price', '$nft_tag', '$nft_image', '$status', '$owner', '$buyer', '$user_name', '$user_fname', '$user_image', '$nft_description')");
 
    // FOR THE SELLER
-   $conn->query("INSERT INTO orders( nft_id, order_id, user_id, nft_name, nft_price, nft_tag, nft_image, status, owner, role, user_name, user_fname, user_image, nft_description) VALUES('$nft_id', '$order_id', '$owner_id', '$nft_name', '$nft_price', '$nft_tag', '$nft_image', '$status', '$owner', '$seller', '$user_name', '$user_fname', '$user_image', '$nft_description')");
+   $conn->query("INSERT INTO sales( nft_id, sale_id, user_id, nft_name, nft_price, nft_tag, nft_image, status, owner, role, user_name, user_fname, user_image, nft_description) VALUES('$nft_id', '$order_id', '$owner_id', '$nft_name', '$nft_price', '$nft_tag', '$nft_image', '$status', '$owner', '$seller', '$user_name', '$user_fname', '$user_image', '$nft_description')");
 
    flashmsg('success', '<strong class="text-success">Congratulations! </strong>Your purchase request is successful');
 }
