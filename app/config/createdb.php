@@ -38,6 +38,7 @@ function createNfts()
          `nft_description` VARCHAR(1000) NULL,
          `user_image` VARCHAR(255) NULL,
          `user_bio` VARCHAR(1000) NULL,
+         `visibility` INT NOT NULL DEFAULT "0",
          PRIMARY KEY (`nft_id`)) ENGINE = InnoDB');
 }
 
