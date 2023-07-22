@@ -80,17 +80,14 @@ if (isset($_POST['register'])) {
                }
             }
          }
-
       } else {
          flashmsg('error', 'Username already exists', 'alert alert-danger');
          redirect('404.php?error');
       }
-
    } else {
       flashmsg('error', 'Email already exists', 'alert alert-danger');
       redirect('404.php?error');
    }
-
 }
 
 if (isset($_POST['login'])) {
@@ -122,8 +119,6 @@ if (isset($_POST['login'])) {
                flashMsg('message', 'Welcome ' . '-' . $_SESSION['user_name'] . '-');
                redirect('creator?user=' . $row['user_id']);
             }
-
-
          } else {
             flashmsg('error', 'Invalid Credentials', 'alert alert-danger');
             redirect('404.php?error');
@@ -194,7 +189,6 @@ if (isset($_POST['btn-edit-profile'])) {
    $conn->query("UPDATE users SET user_fname = '$name', user_bio = '$bio' WHERE user_id = '$user_id'");
 
    redirect("creator?user=$user_id");
-
 }
 
 if (isset($_POST['btn-upload-image'])) {
@@ -260,13 +254,11 @@ if (isset($_POST['btn-hide-item'])) {
    $nft_id = $_POST['nft_id'];
 
    $conn->query("UPDATE nfts SET visibility = '1' WHERE nft_id = '$nft_id'");
-
 } else if (isset($_POST['btn-show-item'])) {
 
    $nft_id = $_POST['nft_id'];
 
    $conn->query("UPDATE nfts SET visibility = '0' WHERE nft_id = '$nft_id'");
-
 }
 
 // PROCEED TO BUY NFT
@@ -309,7 +301,7 @@ if (isset($_POST['approve_nft_sales'])) {
    $row = mysqli_fetch_array($query);
 
    // DECLARE VARIABLES
-   $order_id = 'TRX' . random_num(9);
+   //$order_id = 'TRX' . random_num(9);
    $owner_id = $row['user_id'];
    $user_id = $_SESSION['user_id'];
    $nft_name = $row['nft_name'];
