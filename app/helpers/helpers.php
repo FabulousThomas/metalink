@@ -91,7 +91,7 @@ if (isset($_GET['logout'])) {
       unset($_SESSION['user_id']);
       // unset($_SESSION['nft_id']);
 
-      // redirect('explore');
+      redirect('explore');
    }
 }
 
